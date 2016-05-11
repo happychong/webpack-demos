@@ -1,0 +1,27 @@
+{
+  "name": "webpack-demos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/happychong/webpack-demos.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "happychong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/happychong/webpack-demos/issues"
+  },
+  "homepage": "https://github.com/happychong/webpack-demos#readme",
+  "devDependencies": {
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
