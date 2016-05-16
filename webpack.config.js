@@ -6,13 +6,17 @@ var pathToReactDOM = path.join(__dirname, "./node_modules/react-dom/dist/react-d
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var openBrowserWebpackPlugin = require('open-browser-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: [
-        'webpack/hot/dev-server',
-        'webpack-dev-server/client?http://localhost:7777',
-        path.resolve(__dirname, 'src/index.js'),
-    ],
+    entry: {
+        index:[
+            'webpack/hot/dev-server',
+            'webpack-dev-server/client?http://localhost:7777',
+            path.resolve(__dirname, 'src/index.js'),
+        ],
+        vendor: ['react', 'react-dom']
+    },
     // entry: {
     //     entry1: './src/entry1.js',
     //     entry2: './src/entry2.js'
@@ -20,7 +24,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         // filename: '[name].js'
-        filename: 'bundle.js'
+        filename: 'bundle.js?[hash]'
     },
     devServer: {
       publicPath: "/static/",
@@ -45,14 +49,21 @@ module.exports = {
                 test: /\.js$/,
                 loaders: ['react-hot', 'babel-loader'],
                 exclude: path.resolve(__dirname, 'node_modules')
+                // about init.js
+                // test: /\.js$/,
+                // exclude: /node_modules/,
+                // loader: 'babel-loader',
+                // query: {
+                //     presets: ['es2015', 'react']
+                // }
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             },
             {
                 test: /\.less$/,
-                loader: 'style!css!less'
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
             },
             {
                 test: /\.(woff|woff2|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -64,10 +75,13 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin("bundle.css?[hash]"),
         new HtmlWebpackPlugin({
             title: 'zhufeng-react',
             tempate: './src/index.html'
         }),
+        // new webpack.optimize.CommonsChunkPlugin('init.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js?[hash]'),
         new openBrowserWebpackPlugin({ url: 'http://localhost:7777' })
     ]
 }

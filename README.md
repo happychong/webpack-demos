@@ -1,1 +1,7 @@
 # webpack-demos
+
+
+
+#bugs
+
+- Common chunk 提取出应用中公共的代码 报bug
