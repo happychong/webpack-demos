@@ -58,8 +58,14 @@ module.exports = {
                 // }
             },
             {
+                // test: /\.css$/,
+                // loader: ExtractTextPlugin.extract("style-loader", "css-loader")
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loaders: [
+                  'style-loader',
+                  'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
+                  'postcss-loader'
+                ]
             },
             {
                 test: /\.less$/,
@@ -72,6 +78,11 @@ module.exports = {
         ],
         noParse: [pathToReact, pathToReactDOM]
     },
+    postcss: [
+        require('postcss-nested')(),
+        require('cssnext')(),
+        require('autoprefixer-core')({ browsers: ['last 2 versions'] })
+    ],
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),

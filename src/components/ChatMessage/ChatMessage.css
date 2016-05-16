@@ -1,0 +1,12 @@
+.root {
+  background-color: #f0f0f0;
+  > img {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+  }
+}
+
+.text {
+  font-size: 22px;
+}

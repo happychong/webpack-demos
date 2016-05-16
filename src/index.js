@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 
+
 // resolve extensions start
 // import component from './component.js';
 // component();
@@ -24,7 +25,11 @@ import ReactDom from 'react-dom';
 
 
 // 样式 start
-import Button from './components/Button/Button.js';
-let root = document.getElementById('app');
-ReactDom.render(<Button />, root);
+// import Button from './components/Button/Button.js';
+// let root = document.getElementById('app');
+// ReactDom.render(<Button />, root);
 // 样式 end
+
+import ChatMessage from './components/ChatMessage/ChatMessage.js';
+let root = document.getElementById('app');
+ReactDom.render(<ChatMessage />, root);
