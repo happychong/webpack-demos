@@ -5,6 +5,7 @@ var pathToReact = path.join(__dirname, "./node_modules/react/dist/react.js");
 var pathToReactDOM = path.join(__dirname, "./node_modules/react-dom/dist/react-dom.js");
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var openBrowserWebpackPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -65,7 +66,8 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({
             title: 'zhufeng-react',
-            tempate: './app/index.html'
-        })
+            tempate: './src/index.html'
+        }),
+        new openBrowserWebpackPlugin({ url: 'http://localhost:7777' })
     ]
 }
